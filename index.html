@@ -8,7 +8,7 @@
     <meta name="description" content="Podcasts for Moderation LLC">
     <meta name="author" content="Arda Sahiner and Tej Joshi">
 
-    <title>Moderation in the Morning</title>
+    <title>Moderation Mondays</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -30,15 +30,21 @@
 
 <body>
   <h1> Hello world </h1>
-  <audio controls class = "test">
-    <source src = "" type = "audio/mpeg">
-  </audio>
+  <p class="player">
+    <span id="playtoggle" />
+    <span id="gutter">
+        <span id="loading" />
+        <span id="handle" class="ui-slider-handle" />
+    </span>
+    <span id="timeleft" />
+  </p>
 
   <!-- jQuery -->
   <script src="js/jquery.js"></script>
 
   <!-- Bootstrap Core JavaScript -->
   <script src="js/bootstrap.min.js"></script>
+  <script src="js/ardajs.js"></script>
 
   <!-- Plugin JavaScript -->
   <script src="js/jquery.easing.min.js"></script>
