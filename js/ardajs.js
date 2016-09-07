@@ -7,3 +7,8 @@ function eventFire(el, etype){
     el.dispatchEvent(evObj);
   }
 }
+
+function moveSlider(ct, d, e, index) {
+  // console.log(ct);
+  angular.element('body').controller().updateSliderLeft(ct, d, e, index);
+}
