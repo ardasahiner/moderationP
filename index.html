@@ -29,23 +29,46 @@
 </head>
 
 <body class = "container" ng-app="moderationMondays" ng-controller="mainController as main">
-  <h1 id = "tracktime">{{main.timeRemainingList[0]}} </h1>
-  <!-- <p class="player">
-    <span id="playtoggle" />
-    <span id="gutter">
-        <span id="loading" />
-        <span id="handle" class="ui-slider-handle" />
-    </span>
-    <span id="timeleft" />
-  </p> -->
-  <audio id ="myAudio" ontimeupdate = "document.getElementById('tracktime').innerHTML = Math.floor((this.duration - this.currentTime) * 10) / 10;">
+
+  <h1 id = "tracktime2" ng-if = "main.loadedList[2]">{{main.timeRemainingList[2]}} </h1>
+  <h1 ng-if = "!main.loadedList[2]">&nbsp;</h1>
+  <audio id ="audio2" ontimeupdate = "document.getElementById('tracktime2').innerHTML = Math.floor((this.duration - this.currentTime));" onended = "eventFire(document.getElementById('pause2'), 'click');">
+    <source src="./mp3_files/mptest4.mp3" type="audio/mpeg">
+    Your user agent does not support the HTML5 Audio element.
+  </audio>
+  <!-- <button type="button" onclick="aud_play_pause()">Play/Pause</button> -->
+  <span class="play">
+    <a><i class="fa fa-play playButton" aria-hidden="true" ng-click="main.aud_play(2)" ng-if= "main.pausedList[2]"></i></a>
+    <a><i id = "pause2" class="fa fa-pause pauseButton" aria-hidden="true" ng-click="main.aud_pause(2)" ng-if= "main.playingList[2]"></i></a>
+  </span>
+
+  <br></br><hr><br></br>
+
+  <h1 id = "tracktime1" ng-if = "main.loadedList[1]">{{main.timeRemainingList[1]}} </h1>
+  <h1 ng-if = "!main.loadedList[1]">&nbsp;</h1>
+  <audio id ="audio1" ontimeupdate = "document.getElementById('tracktime1').innerHTML = Math.floor((this.duration - this.currentTime));" onended = "eventFire(document.getElementById('pause1'), 'click');">
+    <source src="./mp3_files/mptest1.mp3" type="audio/mpeg">
+    Your user agent does not support the HTML5 Audio element.
+  </audio>
+  <!-- <button type="button" onclick="aud_play_pause()">Play/Pause</button> -->
+  <span class="play">
+    <a><i class="fa fa-play playButton" aria-hidden="true" ng-click="main.aud_play(1)" ng-if= "main.pausedList[1]"></i></a>
+    <a><i id = "pause1" class="fa fa-pause pauseButton" aria-hidden="true" ng-click="main.aud_pause(1)" ng-if= "main.playingList[1]"></i></a>
+  </span>
+
+
+  <br></br><hr><br></br>
+
+  <h1 id = "tracktime0" ng-if = "main.loadedList[0]">{{main.timeRemainingList[0]}} </h1>
+  <h1 ng-if = "!main.loadedList[0]">&nbsp;</h1>
+  <audio id ="audio0" ontimeupdate = "document.getElementById('tracktime0').innerHTML = Math.floor((this.duration - this.currentTime));" onended = "eventFire(document.getElementById('pause0'), 'click');">
     <source src="./mp3_files/mptest.mp3" type="audio/mpeg">
     Your user agent does not support the HTML5 Audio element.
   </audio>
   <!-- <button type="button" onclick="aud_play_pause()">Play/Pause</button> -->
-  <span id="play">
+  <span class="play">
     <a><i class="fa fa-play playButton" aria-hidden="true" ng-click="main.aud_play(0)" ng-if= "main.pausedList[0]"></i></a>
-    <a><i class="fa fa-pause pauseButton" aria-hidden="true" ng-click="main.aud_pause(0)" ng-if= "main.playingList[0]"></i></a>
+    <a><i id = "pause0" class="fa fa-pause pauseButton" aria-hidden="true" ng-click="main.aud_pause(0)" ng-if= "main.playingList[0]"></i></a>
   </span>
   <!-- <span id="gutter">
       <span id="loading" />
