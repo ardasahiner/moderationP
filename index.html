@@ -28,19 +28,40 @@
     <link href="http://vstock.io">
 </head>
 
-<body>
-  <h1> Hello world </h1>
-  <p class="player">
+<body class = "container" ng-app="moderationMondays" ng-controller="mainController as main">
+  <h1 id = "tracktime">{{main.timeRemainingList[0]}} </h1>
+  <!-- <p class="player">
     <span id="playtoggle" />
     <span id="gutter">
         <span id="loading" />
         <span id="handle" class="ui-slider-handle" />
     </span>
     <span id="timeleft" />
-  </p>
+  </p> -->
+  <audio id ="myAudio" ontimeupdate = "document.getElementById('tracktime').innerHTML = Math.floor((this.duration - this.currentTime) * 10) / 10;">
+    <source src="./mp3_files/mptest.mp3" type="audio/mpeg">
+    Your user agent does not support the HTML5 Audio element.
+  </audio>
+  <!-- <button type="button" onclick="aud_play_pause()">Play/Pause</button> -->
+  <span id="play">
+    <a><i class="fa fa-play playButton" aria-hidden="true" ng-click="main.aud_play(0)" ng-if= "main.pausedList[0]"></i></a>
+    <a><i class="fa fa-pause pauseButton" aria-hidden="true" ng-click="main.aud_pause(0)" ng-if= "main.playingList[0]"></i></a>
+  </span>
+  <!-- <span id="gutter">
+      <span id="loading" />
+      <span id="handle" class="ui-slider-handle" />
+  </span> -->
+  <!-- <span id="timeleft" /> -->
 
+<!--
+  <audio controls>
+    <source src="./mp3_files/mptest.mp3" type="audio/mpeg">
+    Your user agent does not support the HTML5 Audio element.
+  </audio> -->
   <!-- jQuery -->
   <script src="js/jquery.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+
 
   <!-- Bootstrap Core JavaScript -->
   <script src="js/bootstrap.min.js"></script>
@@ -48,6 +69,12 @@
 
   <!-- Plugin JavaScript -->
   <script src="js/jquery.easing.min.js"></script>
+
+  <!-- Angular script -->
+  <script src="app.js"></script>
+  <!-- <script src="app.routes.js"></script> -->
+  <!-- Import all controllers too -->
+  <script src="controllers/mainController.js"></script>
 
   <!-- Custom Theme JavaScript -->
   <!-- <script src="js/grayscale.js"></script> -->
