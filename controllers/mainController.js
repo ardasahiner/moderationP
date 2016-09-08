@@ -3,22 +3,33 @@ angular.module('mainController', [])
 .controller('mainController', function($window, $scope) {
 
   var vm = this;
-  vm.audioList = [document.getElementById("audio0"), document.getElementById("audio1"), document.getElementById("audio2")];
-  vm.loadedList = [false, false, false];
-  vm.playingList = [false, false, false];
-  vm.pausedList = [true, true, true];
-  vm.durationList = [0, 0, 0];
-  vm.timeRemainingList = [0, 0, 0];
-  vm.activeAudio = document.getElementById("audio0"); // default to 0
-  vm.activeAudioIndex = 0; // default to 0
-  $scope.sliderLeft = [0, 0, 0];
+  vm.audioList = [document.getElementById("audio0"), document.getElementById("audio1"), document.getElementById("audio2"), document.getElementById("audio3")];
+  vm.loadedList = [false, false, false, false];
+  vm.playingList = [false, false, false, false];
+  vm.pausedList = [true, true, true, true];
+  vm.durationList = [0, 0, 0, 0];
+  vm.timeRemainingList = [0, 0, 0, 0];
+  vm.activeAudio = document.getElementById("audio3"); // default to last
+  vm.activeAudioIndex = vm.audioList.length - 1; // default to last
+  $scope.sliderLeft = [0, 0, 0, 0];
+
+
+  vm.updateOnSpace =  function() {
+
+    if(vm.playingList[vm.activeAudioIndex]) {
+
+      vm.aud_pause(vm.activeAudioIndex);
+    } else {
+
+      vm.aud_play(vm.activeAudioIndex);
+    }
+
+  }
 
   vm.updateSliderLeft = function(ct, d, e, index) {
 
     if (e) {
 
-      console.log("Ended!");
-      console.log("okay...");
       vm.audioList[index].pause();
       vm.playingList[index] = false;
       vm.pausedList[index] = true;
@@ -32,14 +43,12 @@ angular.module('mainController', [])
       var style = window.getComputedStyle(element);
       var width = style.getPropertyValue('width');
       var widthInt = width.substring(0, width.length - 2);
-      console.log((ct / d) * widthInt);
       $scope.sliderLeft[index] = (ct / d) * widthInt;
       $scope.$apply();
     }
   };
 
   $scope.addOnClick = function(event, index) {
-      console.log(event.offsetX);
       $scope.sliderLeft[index] = event.offsetX;
 
       var element = document.getElementById('sliderBox' + index);
@@ -49,6 +58,9 @@ angular.module('mainController', [])
 
       vm.audioList[index].currentTime = (event.offsetX / widthInt) * vm.durationList[index];
       vm.timeRemainingList[index] = Math.floor(vm.audioList[index].duration - vm.audioList[index].currentTime);
+
+      vm.activeAudio = vm.audioList[index];
+      vm.activeAudioIndex = index;
   };
 
   vm.aud_play = function(index) {
@@ -65,12 +77,6 @@ angular.module('mainController', [])
       vm.playingList[index] = true;
       vm.pausedList[index] = false;
     }
-    //
-    // myAudio.onended = function() {
-    //   vm.ended = true;
-    //   console.log("the audio has ended");
-    //   console.log(vm.ended);
-    // };
   };
 
   vm.aud_pause = function(index) {
@@ -79,12 +85,6 @@ angular.module('mainController', [])
       vm.playingList[index] = false;
       vm.pausedList[index] = true;
     }
-
-    // if (vm.audioList[index].ended) {
-    //   console.log('ENDED');
-    //   var the_id = 'tracktime' + index;
-    //   document.getElementById(the_id).innerHTML = Math.floor((vm.audioList[index].duration));
-    // }
   };
 
   vm.getDuration = function() {

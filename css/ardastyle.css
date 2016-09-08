@@ -1,6 +1,36 @@
 h2 {
-  font-size: 20px;
+  font-size: 18px;
   color: blue;
+}
+
+body {
+
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.postTitle {
+
+  font-size: 24px;
+  /*font-family: 'Cabin', sans-serif;*/
+  color: #3B3B3B;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+.dateTimeHeading .col-lg-6 {
+
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.break {
+
+  margin-bottom: 0px;
+}
+
+.date {
+  font-size: 12px;
+  float: right;
 }
 
 .fa-ul{
