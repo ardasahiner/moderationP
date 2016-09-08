@@ -59,8 +59,8 @@ angular.module('mainController', [])
       vm.audioList[index].currentTime = (event.offsetX / widthInt) * vm.durationList[index];
       vm.timeRemainingList[index] = Math.floor(vm.audioList[index].duration - vm.audioList[index].currentTime);
 
-      vm.activeAudio = vm.audioList[index];
-      vm.activeAudioIndex = index;
+      // vm.activeAudio = vm.audioList[index];
+      // vm.activeAudioIndex = index;
   };
 
   vm.aud_play = function(index) {
